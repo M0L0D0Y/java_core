@@ -253,30 +253,27 @@ public class Homework1 {
         int checkTransmissionProblem = 0;
         int checkWheelsProblem = 0;
         int discount = 0;
+        int countProblem = 0;
         if (!hasFuel && hasElectricsProblem && hasMotorProblem && hasTransmissionProblem && hasWheelsProblem) {
             checkConsultation = 1000;
         }
         if (!hasMotorProblem) {
             checkMotorProblem = 10_000;
+            countProblem++;
         }
         if (!hasElectricsProblem) {
             checkElectricsProblem = 5000;
+            countProblem++;
         }
         if (!hasTransmissionProblem) {
             checkTransmissionProblem = 4000;
+            countProblem++;
         }
         if (!hasWheelsProblem) {
             checkWheelsProblem = 2000;
+            countProblem++;
         }
-        List<Integer> checkList = List.of(checkMotorProblem, checkElectricsProblem,
-                checkTransmissionProblem, checkWheelsProblem);
-        int count = 0;
-        for (Integer check : checkList) {
-            if (check > 0) {
-                count++;
-            }
-        }
-        if (count == 2) {//В условии не сказано 2 или более поломок.
+        if (countProblem == 2) {//В условии не сказано 2 или более поломок.
             discount = 10;
         }
         if (checkTransmissionProblem > 0 && (checkElectricsProblem > 0 || checkMotorProblem > 0)) {
