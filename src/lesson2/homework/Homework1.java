@@ -69,9 +69,9 @@ public class Homework1 {
         // Задание №3:
         // Дано:
         boolean hasFuel = true;
-        boolean hasElectricsProblem = false;
+        boolean hasElectricsProblem = true;
         boolean hasMotorProblem = false;
-        boolean hasTransmissionProblem = true;
+        boolean hasTransmissionProblem = false;
         boolean hasWheelsProblem = false;
         // В автосервис приехала сломанная машина. Механики находят неисправность следующим способом:
         // Если у машины нет бензина и ничего не сломано, то отдают машину владельцу и берут 1000 рублей за консультацию.
@@ -148,52 +148,6 @@ public class Homework1 {
             }
         }
         return maskedData;
-    }
-
-    public static String encryptionEmail(String personDateEmail) {
-        String[] personEmail = personDateEmail.split(EMAIL_SPLIT);
-        String encryptionNickname = personEmail[0].substring(0, personEmail[0].length() - 1) + HIDDEN_SIGN;
-        String[] domen = personEmail[1].split("\\.", 2);
-        char[] encryptionDomen = domen[0].toCharArray();
-        for (int i = 0; i < domen[0].length(); i++) {
-            encryptionDomen[i] = HIDDEN_SIGN;
-        }
-        StringBuilder sb = new StringBuilder();
-        return String.valueOf(sb.append(encryptionNickname)
-                .append(EMAIL_SPLIT)
-                .append(encryptionDomen)
-                .append(POINT)
-                .append(domen[1]));
-    }
-
-    private static String encryptionNumber(String personDateNumber) {
-        char[] number = personDateNumber.toCharArray();
-        for (int i = 4; i < number.length - 4; i++) {
-            number[i] = HIDDEN_SIGN;
-        }
-        return String.valueOf(number);
-    }
-
-    private static String encryptionFio(String personDateFio) {
-        String[] fio = personDateFio.split(" ");
-        char[] lastname = fio[0].toCharArray();
-        for (int i = 1; i < lastname.length - 1; i++) {
-            lastname[i] = HIDDEN_SIGN;
-        }
-        fio[0] = String.valueOf(lastname);
-        char[] patronymic = fio[2].toCharArray();
-        patronymic[1] = POINT;
-        char[] patronymicPerson = new char[2];
-        patronymicPerson[0] = patronymic[0];
-        patronymicPerson[1] = patronymic[1];
-        fio[2] = String.valueOf(patronymicPerson);
-        String encryptionFio = "";
-        StringBuilder sb = new StringBuilder();
-        for (String str : fio) {
-            encryptionFio = String.valueOf(sb.append(str).append(" "));
-        }
-        encryptionFio = encryptionFio.substring(0, encryptionFio.length() - 1);
-        return encryptionFio;
     }
 
     public static void taskOne() {
@@ -287,5 +241,51 @@ public class Homework1 {
             check = check - sumDiscount;
         }
         return check;
+    }
+
+    private static String encryptionEmail(String personDateEmail) {
+        String[] personEmail = personDateEmail.split(EMAIL_SPLIT);
+        String encryptionNickname = personEmail[0].substring(0, personEmail[0].length() - 1) + HIDDEN_SIGN;
+        String[] domen = personEmail[1].split("\\.", 2);
+        char[] encryptionDomen = domen[0].toCharArray();
+        for (int i = 0; i < domen[0].length(); i++) {
+            encryptionDomen[i] = HIDDEN_SIGN;
+        }
+        StringBuilder sb = new StringBuilder();
+        return String.valueOf(sb.append(encryptionNickname)
+                .append(EMAIL_SPLIT)
+                .append(encryptionDomen)
+                .append(POINT)
+                .append(domen[1]));
+    }
+
+    private static String encryptionNumber(String personDateNumber) {
+        char[] number = personDateNumber.toCharArray();
+        for (int i = 4; i < number.length - 4; i++) {
+            number[i] = HIDDEN_SIGN;
+        }
+        return String.valueOf(number);
+    }
+
+    private static String encryptionFio(String personDateFio) {
+        String[] fio = personDateFio.split(" ");
+        char[] lastname = fio[0].toCharArray();
+        for (int i = 1; i < lastname.length - 1; i++) {
+            lastname[i] = HIDDEN_SIGN;
+        }
+        fio[0] = String.valueOf(lastname);
+        char[] patronymic = fio[2].toCharArray();
+        patronymic[1] = POINT;
+        char[] patronymicPerson = new char[2];
+        patronymicPerson[0] = patronymic[0];
+        patronymicPerson[1] = patronymic[1];
+        fio[2] = String.valueOf(patronymicPerson);
+        String encryptionFio = "";
+        StringBuilder sb = new StringBuilder();
+        for (String str : fio) {
+            encryptionFio = String.valueOf(sb.append(str).append(" "));
+        }
+        encryptionFio = encryptionFio.substring(0, encryptionFio.length() - 1);
+        return encryptionFio;
     }
 }
