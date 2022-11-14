@@ -68,11 +68,11 @@ public class Homework1 {
         System.out.println(taskFive(3, 5));
         // Задание №3:
         // Дано:
-        boolean hasFuel = true;
-        boolean hasElectricsProblem = true;
-        boolean hasMotorProblem = false;
-        boolean hasTransmissionProblem = false;
-        boolean hasWheelsProblem = false;
+        boolean hasFuel = false;
+        boolean hasElectricsProblem = false;
+        boolean hasMotorProblem = true;
+        boolean hasTransmissionProblem = true;
+        boolean hasWheelsProblem = true;
         // В автосервис приехала сломанная машина. Механики находят неисправность следующим способом:
         // Если у машины нет бензина и ничего не сломано, то отдают машину владельцу и берут 1000 рублей за консультацию.
         // Если у машины проблема с двигателем, то чинят и берут 10 000.
@@ -208,22 +208,22 @@ public class Homework1 {
         int checkWheelsProblem = 0;
         int discount = 0;
         int countProblem = 0;
-        if (!hasFuel && hasElectricsProblem && hasMotorProblem && hasTransmissionProblem && hasWheelsProblem) {
+        if (hasFuel && !hasElectricsProblem && !hasMotorProblem && !hasTransmissionProblem && !hasWheelsProblem) {
             checkConsultation = 1000;
         }
-        if (!hasMotorProblem) {
+        if (hasMotorProblem) {
             checkMotorProblem = 10_000;
             countProblem++;
         }
-        if (!hasElectricsProblem) {
+        if (hasElectricsProblem) {
             checkElectricsProblem = 5000;
             countProblem++;
         }
-        if (!hasTransmissionProblem) {
+        if (hasTransmissionProblem) {
             checkTransmissionProblem = 4000;
             countProblem++;
         }
-        if (!hasWheelsProblem) {
+        if (hasWheelsProblem) {
             checkWheelsProblem = 2000;
             countProblem++;
         }
