@@ -1,16 +1,6 @@
 package lesson2.homework;
 
-import java.util.List;
-
 public class Homework1 {
-    private static final char HIDDEN_SIGN = '*';
-    private static final String EMAIL_SPLIT = "@";
-    private static final char POINT = '.';
-    private static final String PERSON_DATA_SPLIT = ";";
-    private static final String ONE_GLOBAL_SPLIT = "<data>";
-    private static final String TWO_GLOBAL_SPLIT = "</d";
-
-    private static final String END_STRING = "</data></client>";
 
     public static void main(String[] args) {
         //Базовая домашка
@@ -86,69 +76,9 @@ public class Homework1 {
         // Ожидаемый результат: выведен на экран счет клиенту.
         System.out.println(taskSix(hasFuel, hasElectricsProblem, hasMotorProblem,
                 hasTransmissionProblem, hasWheelsProblem));//В условии не сказано 2 или более поломок.
-        //Экспертный уровень
-        //Задача №1
-        //Создать метод маскирования персональных данных, который:
-        //Телефон (до/после маскирования): 79991113344 / 7999***3344
-        //Email (до/после маскирования): test@yandex.ru / tes*@******.ru, my_mail@gmail.com / my_mai*@*****.com
-        //Фио (до/после маскирования): Иванов Иван Иванович / И****в Иван И.
-        //
-        //Входящие параметры: String text
-        //Возвращаемый результат: String
-        //
-        //Примеры возможного текста:
-        //<client>(Какие то данные)<data>79991113344;test@yandex.ru;Иванов Иван Иванович</data></client> -
-        // "<client>(Какие то данные)<data>7999***3344;tes*@******.ru;И****в Иван И.</data></client>"
-        //<client>(Какие то данные)<data></data></client> - вернет тоже (никаких ошибок)
-        //<client>(Какие то данные)<data>Иванов Иван Иванович;79991113344</data></client> - "<client>(Какие то данные)<data>И****в Иван И.;7999***3344</data></client>"
 
-        //Используемые технологии: String.find, String.replaceAll, String.split, String.join, String.contains, String.substring
-        //Регулярные выражения, класс StringBuilder
-        String fullData =
-                "<client>(Какие то данные)<data>79991113344;test@yandex.ru;Иванов Иван Иванович</data></client>";
-        String data = "<client>(Какие то данные)<data>Иванов Иван Иванович;79991113344</data></client>";
-        String nullData = "<client>(Какие то данные)<data></data></client>";
-        List<String> personDataList = List.of(fullData, data, nullData);
-        for (String str : personDataList) {
-            System.out.println(taskSeven(str));
-        }
     }
 
-    public static String taskSeven(String data) {
-        String maskedData = data;
-        String[] personData = data.split(ONE_GLOBAL_SPLIT);
-        String start = personData[0];
-        if (personData[1].contains(PERSON_DATA_SPLIT)) {
-            String[] onlyPersonData = personData[1].split(TWO_GLOBAL_SPLIT);
-            String[] arrPersonData = onlyPersonData[0].split(PERSON_DATA_SPLIT);
-            if (arrPersonData.length == 2) {
-                String fio = encryptionFio(arrPersonData[0]);
-                String number = encryptionNumber(arrPersonData[1]);
-                StringBuilder sb = new StringBuilder();
-                maskedData = String.valueOf(sb.append(start)
-                        .append(ONE_GLOBAL_SPLIT)
-                        .append(fio)
-                        .append(PERSON_DATA_SPLIT)
-                        .append(number)
-                        .append(END_STRING));
-            }
-            if (arrPersonData.length == 3) {
-                String fio = encryptionFio(arrPersonData[2]);
-                String number = encryptionNumber(arrPersonData[0]);
-                String email = encryptionEmail(arrPersonData[1]);
-                StringBuilder sb = new StringBuilder();
-                maskedData = String.valueOf(sb.append(start)
-                        .append(ONE_GLOBAL_SPLIT)
-                        .append(number)
-                        .append(PERSON_DATA_SPLIT)
-                        .append(email)
-                        .append(PERSON_DATA_SPLIT)
-                        .append(fio)
-                        .append(END_STRING));
-            }
-        }
-        return maskedData;
-    }
 
     public static void taskOne() {
         double weigth = 70;
@@ -206,7 +136,8 @@ public class Homework1 {
         int checkElectricsProblem = 0;
         int checkTransmissionProblem = 0;
         int checkWheelsProblem = 0;
-        int discount = 0;
+        int discountMin = 10;
+        int discountMax = 20;
         int countProblem = 0;
         if (hasFuel && !hasElectricsProblem && !hasMotorProblem && !hasTransmissionProblem && !hasWheelsProblem) {
             checkConsultation = 1000;
@@ -227,65 +158,17 @@ public class Homework1 {
             checkWheelsProblem = 2000;
             countProblem++;
         }
-        if (countProblem == 2) {//В условии не сказано 2 или более поломок.
-            discount = 10;
-        }
-        if (checkTransmissionProblem > 0 && (checkElectricsProblem > 0 || checkMotorProblem > 0)) {
-            discount = 20;
-        }
         double check;
         check = (checkConsultation + checkElectricsProblem +
                 checkMotorProblem + checkTransmissionProblem + checkWheelsProblem);
-        if (discount != 0) {
-            double sumDiscount = check / 100 * discount;
+        if (countProblem == 2) {//В условии не сказано 2 или более поломок.
+            double sumDiscount = check / 100 * discountMin;
+            check = check - sumDiscount;
+        }
+        if (checkTransmissionProblem > 0 && (checkElectricsProblem > 0 || checkMotorProblem > 0)) {
+            double sumDiscount = check / 100 * discountMax;
             check = check - sumDiscount;
         }
         return check;
-    }
-
-    private static String encryptionEmail(String personDateEmail) {
-        String[] personEmail = personDateEmail.split(EMAIL_SPLIT);
-        String encryptionNickname = personEmail[0].substring(0, personEmail[0].length() - 1) + HIDDEN_SIGN;
-        String[] domen = personEmail[1].split("\\.", 2);
-        char[] encryptionDomen = domen[0].toCharArray();
-        for (int i = 0; i < domen[0].length(); i++) {
-            encryptionDomen[i] = HIDDEN_SIGN;
-        }
-        StringBuilder sb = new StringBuilder();
-        return String.valueOf(sb.append(encryptionNickname)
-                .append(EMAIL_SPLIT)
-                .append(encryptionDomen)
-                .append(POINT)
-                .append(domen[1]));
-    }
-
-    private static String encryptionNumber(String personDateNumber) {
-        char[] number = personDateNumber.toCharArray();
-        for (int i = 4; i < number.length - 4; i++) {
-            number[i] = HIDDEN_SIGN;
-        }
-        return String.valueOf(number);
-    }
-
-    private static String encryptionFio(String personDateFio) {
-        String[] fio = personDateFio.split(" ");
-        char[] lastname = fio[0].toCharArray();
-        for (int i = 1; i < lastname.length - 1; i++) {
-            lastname[i] = HIDDEN_SIGN;
-        }
-        fio[0] = String.valueOf(lastname);
-        char[] patronymic = fio[2].toCharArray();
-        patronymic[1] = POINT;
-        char[] patronymicPerson = new char[2];
-        patronymicPerson[0] = patronymic[0];
-        patronymicPerson[1] = patronymic[1];
-        fio[2] = String.valueOf(patronymicPerson);
-        String encryptionFio = "";
-        StringBuilder sb = new StringBuilder();
-        for (String str : fio) {
-            encryptionFio = String.valueOf(sb.append(str).append(" "));
-        }
-        encryptionFio = encryptionFio.substring(0, encryptionFio.length() - 1);
-        return encryptionFio;
     }
 }
