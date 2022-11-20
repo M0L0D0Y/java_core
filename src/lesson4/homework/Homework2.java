@@ -128,8 +128,8 @@ public class Homework2 {
         //Для генерации данных воспользоваться GeneratorExpertHomework.getData()
         Map<Integer, Map<String, String[]>> data = GeneratorExpertHomework.getData();
         Set<String> countNumber = new HashSet<>();
-        for (Integer key1 : data.keySet()) {
-            Map<String, String[]> interiorData = data.get(key1);
+        for (Integer key : data.keySet()) {
+            Map<String, String[]> interiorData = data.get(key);
             for (String interiorKey : interiorData.keySet()) {
                 String[] numbers = interiorData.get(interiorKey);
                 for (String number : numbers) {
