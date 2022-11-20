@@ -2,10 +2,9 @@ package lesson4.homework;
 
 import lesson4.homework.expert.GeneratorExpertHomework;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Homework2 {
     public static void main(String[] args) {
@@ -48,7 +47,7 @@ public class Homework2 {
         // Задание №1: Написать цикл, который будет прибавлять число к result до тех пор,
         // пока не получиться больше 1_000_000.
         // Дано:
-        double increment = -0.01123;
+        double increment = 0.01123;
         double result = 0;
         // Вывести на экран, количество итераций, которое потребовалось, чтобы дойти до миллиона.
         // Если число отрицательное, то сразу заканчиваем цикл, ничего не выводя.
@@ -106,7 +105,6 @@ public class Homework2 {
         System.out.println("\nПродвинутый.Задача №3");
         System.out.println(Arrays.toString(arrAnswer));
 
-
         //Задача №4
         //В слове "Hello world!" заменить l на r, сделать все буквы заглавными, выбрать первые 8 символов
         String text = "Hello world!";
@@ -127,7 +125,7 @@ public class Homework2 {
         //Для генерации данных воспользоваться GeneratorExpertHomework.getData()
         Map<Integer, Map<String, String[]>> data = GeneratorExpertHomework.getData();
         Set<String> countNumber = new HashSet<>();
-        for (Integer key : data.keySet()) {
+         for (Integer key : data.keySet()) {
             Map<String, String[]> interiorData = data.get(key);
             for (String interiorKey : interiorData.keySet()) {
                 String[] numbers = interiorData.get(interiorKey);
@@ -140,6 +138,18 @@ public class Homework2 {
         }
         System.out.println("\nЭкспертная");
         System.out.println(countNumber.size());
+
+        long countN = data.values()
+                .stream()
+                .map(Map::values)
+                .flatMap(Collection::stream)
+                .map(Arrays::asList)
+                .flatMap(Collection::stream)
+                .filter(e -> e.contains("М") && e.contains("АВ"))
+                .distinct()
+                .count();
+
+        System.out.println("\nвариант через стрим " + countN);
         //Входящие данные
         // Map<Integer, Map<String, String[]>> - где ключ первого уровня - номер региона,
         // out, input - ключи второго уровня (выезд, въезд), и String[] - массивы номеров.
@@ -153,7 +163,14 @@ public class Homework2 {
         //   }
         // ..
         //  }
-
+        /**long value = data.values()
+         .stream()
+         .map(Map::values)
+         .map(String::valueOf)
+         .filter(e -> e.contains("М") && e.contains("АВ"))
+         .distinct()
+         .count();
+         System.out.println("вариант через стрим " + value);*/
         //Список технологий:
         // Set (HashSet) - узнать что это, set.contains(), set.put()
         // Map (HashMap) - узнать что это, map.get(), map.put(), map.entrySet() - для итерации, entry.getValue(), entry.getKey()
