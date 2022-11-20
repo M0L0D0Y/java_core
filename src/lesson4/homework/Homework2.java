@@ -27,12 +27,11 @@ public class Homework2 {
                 world.toLowerCase() +
                 newLine;
         System.out.println("Базовый.Задача №1");
-        System.out.println(answer.repeat(3));
-
+        System.out.print(answer.repeat(3));
 
         // Задание №2 - Написать цикл, который выводит через пробел 100 чисел с приставкой "a".
         // Ожидаемый результат: 1а 2а 3а .. 100а
-        System.out.println("Базовый.Задача №2");
+        System.out.println("\nБазовый.Задача №2");
         for (int i = 1; i < 101; i++) {
             System.out.print(i + "a ");
         }
@@ -49,7 +48,7 @@ public class Homework2 {
         // Задание №1: Написать цикл, который будет прибавлять число к result до тех пор,
         // пока не получиться больше 1_000_000.
         // Дано:
-        double increment = 0.01123;
+        double increment = -0.01123;
         double result = 0;
         // Вывести на экран, количество итераций, которое потребовалось, чтобы дойти до миллиона.
         // Если число отрицательное, то сразу заканчиваем цикл, ничего не выводя.
@@ -62,11 +61,11 @@ public class Homework2 {
             } else {
                 break;
             }
-
         }
         System.out.println("\n\nПродвинутый.Задача №1");
-        System.out.println(count);
-
+        if (count > 0) {
+            System.out.println(count);
+        }
 
         // Задание №2: Дан массив единиц, произвольной длины. Создать цикл, который заменяет каждый
         // нечетный элемент на 0;
