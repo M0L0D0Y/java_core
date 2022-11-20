@@ -163,14 +163,6 @@ public class Homework2 {
         //   }
         // ..
         //  }
-        /**long value = data.values()
-         .stream()
-         .map(Map::values)
-         .map(String::valueOf)
-         .filter(e -> e.contains("М") && e.contains("АВ"))
-         .distinct()
-         .count();
-         System.out.println("вариант через стрим " + value);*/
         //Список технологий:
         // Set (HashSet) - узнать что это, set.contains(), set.put()
         // Map (HashMap) - узнать что это, map.get(), map.put(), map.entrySet() - для итерации, entry.getValue(), entry.getKey()
