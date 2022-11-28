@@ -3,8 +3,6 @@ package lesson4.homework;
 import lesson4.homework.expert.GeneratorExpertHomework;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Homework2 {
     public static void main(String[] args) {
@@ -92,7 +90,7 @@ public class Homework2 {
         //(результат перемножения - (1*2), (2*3), (5*2), (7*17), (10*15)
         int[] arr1 = {1, 2, 5, 7, 10};
         int[] arr2 = {2, 3, 2, 17, 15};
-        Integer[] arrAnswer = new Integer[arr1.length * 3];
+        int[] arrAnswer = new int[arr1.length * 3];
         for (int i = 0; i < arrAnswer.length; i++) {
             if (i < arr1.length) {
                 arrAnswer[i] = arr1[i];
@@ -104,7 +102,6 @@ public class Homework2 {
         }
         System.out.println("\nПродвинутый.Задача №3");
         System.out.println(Arrays.toString(arrAnswer));
-
         //Задача №4
         //В слове "Hello world!" заменить l на r, сделать все буквы заглавными, выбрать первые 8 символов
         String text = "Hello world!";
@@ -125,7 +122,7 @@ public class Homework2 {
         //Для генерации данных воспользоваться GeneratorExpertHomework.getData()
         Map<Integer, Map<String, String[]>> data = GeneratorExpertHomework.getData();
         Set<String> countNumber = new HashSet<>();
-         for (Integer key : data.keySet()) {
+        for (Integer key : data.keySet()) {
             Map<String, String[]> interiorData = data.get(key);
             for (String interiorKey : interiorData.keySet()) {
                 String[] numbers = interiorData.get(interiorKey);
