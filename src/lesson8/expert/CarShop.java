@@ -21,7 +21,7 @@ public class CarShop {
             car.price();
             System.out.println("Хочешь купить авто?\n");
         }
-        if (car.getPrice() < 5000) {
+        if (car.getPrice() < 0) {
             System.out.println("""
                     Здравствуй клиент, цена этого авто
                     Неизвестна мне

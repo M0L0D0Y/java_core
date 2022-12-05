@@ -94,11 +94,9 @@ public class HomeWork4 {
         System.out.println("Экспертный уровень");
         Car car = new Car(-1);
         Car car1 = new Car(5000);
-        Car car2 = new Car(4000);
         CarShop carShop = new CarShop(car);
         CarShop carShop1 = new CarShop(car1);
-        CarShop carShop2 = new CarShop(car2);
-        List<CarShop> carShops = List.of(carShop, carShop1, carShop2);
+        List<CarShop> carShops = List.of(carShop, carShop1);
         for (CarShop cars : carShops) {
             cars.sellCar();
         }
