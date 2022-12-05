@@ -18,7 +18,7 @@ public class Car {
     public void price() {
         try {
             if (price < 0) {
-                throw new CarPriceException("Стоимость авто меньше 0");
+                throw new CarPriceException("Неизвестна мне");
             }
         } catch (CarPriceException e) {
             System.out.println(e.getMessage());

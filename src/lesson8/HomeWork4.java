@@ -91,7 +91,7 @@ public class HomeWork4 {
         // Здравствуй клиент, цена этого авто (Вызвано из объекта CarShop):
         // Неизвестна мне - (выдано из объекта CarShop)
         // Давайте посмотрим другое авто? (Вызвано из объекта CarShop)
-        System.out.println("Экспертный уровень");
+        System.out.println("Экспертный уровень\n");
         Car car = new Car(-1);
         Car car1 = new Car(5000);
         CarShop carShop = new CarShop(car);

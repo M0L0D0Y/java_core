@@ -22,11 +22,9 @@ public class CarShop {
             System.out.println("Хочешь купить авто?\n");
         }
         if (car.getPrice() < 0) {
-            System.out.println("""
-                    Здравствуй клиент, цена этого авто
-                    Неизвестна мне
-                    Давайте посмотрим другое авто?
-                    """);
+            System.out.println("Здравствуй клиент, цена этого авто");
+            car.price();
+            System.out.println("Давайте посмотрим другое авто?\n");
         }
     }
 }
