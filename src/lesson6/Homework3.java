@@ -1,4 +1,4 @@
-package lesson6.homework;
+package lesson6;
 
 import lesson6.homework.advanced.task1.interfaces.Blossom;
 import lesson6.homework.advanced.task1.interfaces.Smell;
@@ -13,6 +13,7 @@ import lesson6.homework.base.task2.Car1;
 import lesson6.homework.base.task2.Car2;
 import lesson6.homework.expert.Human;
 
+import javax.swing.*;
 import java.util.List;
 
 public class Homework3 {
@@ -50,6 +51,7 @@ public class Homework3 {
         Smell[] smells = {pine, spruce, rose};
         Blossom[] blossoms = {rose, fern};
         // И у каждого массива вызвать характерный метод
+        System.out.println("Продвинутый уровень. Задача №1");
         for (Smell smell : smells) {
             smell.smell();
         }
@@ -71,6 +73,7 @@ public class Homework3 {
         // Работник берет из склада товар, на складе товар уменьшается. Работник когда взял товар, выводит на экран
         // "Ура я испортил водку!" и добавляет к себе в журнал количество испорченного товара.
         // У склада есть только одна позиция - Водка.
+        System.out.println("\nПродвинутый уровень. Задача №2");
         Worker worker1 = new Worker("worker1");
         Worker worker2 = new Worker("worker2");
         Worker worker3 = new Worker("worker3");
@@ -80,6 +83,7 @@ public class Homework3 {
         stock.setCountVodka(100);
         for (Worker worker : workers) {
             worker.messUpVodka(stock);
+            System.out.println(worker.getName() + " испортил " + worker.getCountBadVodka() + " водки");
             System.out.println("Осталось не испорченной водки " + stock.getCountVodka());
         }
         //Экспертный уровень:
@@ -97,6 +101,7 @@ public class Homework3 {
         // Human human = Human.builder().name("Петр").age(20).weight(80).build();
         // human.info()
         // Петр - возраст 20, вес 80
+        System.out.println("\nЭкспертный уровень");
         Human human = Human.builder().name("Петр").age(20).weight(80).build();
         human.info();
     }
