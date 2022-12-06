@@ -7,6 +7,7 @@ import lesson8.advanced.Worker;
 import lesson8.base.Airplane;
 import lesson8.base.Duck;
 import lesson8.base.Fly;
+import lesson8.base.FlyException;
 import lesson8.expert.Car;
 import lesson8.expert.CarShop;
 
@@ -38,7 +39,12 @@ public class HomeWork4 {
         Airplane airplane2 = new Airplane(-1);
         Fly[] flies = {duck1, duck2, airplane1, airplane2};
         for (Fly fly : flies) {
-            fly.fly();
+            try {
+                fly.fly();
+            }catch (FlyException e){
+                System.out.println(e.getMessage());
+            }
+
         }
         // Ожидание:
         // утка летит

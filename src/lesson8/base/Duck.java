@@ -16,16 +16,10 @@ public class Duck implements Fly {
     }
 
     @Override
-    public void fly() {
-        try {
-            if (isInjured) {
-                throw new FlyException("Ошибка: утка подстрелена");
-            }
-        } catch (FlyException e) {
-            System.out.println(e.getMessage());
+    public void fly() throws FlyException{
+        if (isInjured) {
+            throw new FlyException("Ошибка: утка подстрелена");
         }
-        if (!isInjured) {
-            System.out.println("утка летит");
-        }
+        System.out.println("утка летит");
     }
 }

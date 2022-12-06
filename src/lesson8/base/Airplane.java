@@ -17,15 +17,9 @@ public class Airplane implements Fly {
 
     @Override
     public void fly() {
-        try {
-            if (countPassengers < 0) {
-                throw new FlyException("Ошибка: пассажиров в самолете меньше 0");
-            }
-        } catch (FlyException e) {
-            System.out.println(e.getMessage());
+        if (countPassengers < 0) {
+            throw new FlyException("Ошибка: пассажиров в самолете меньше 0");
         }
-        if (countPassengers > 0) {
             System.out.println("самолет летит");
-        }
     }
 }
