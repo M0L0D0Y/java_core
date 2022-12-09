@@ -1,14 +1,12 @@
 package lesson8;
 
-import lesson8.advanced.Brand;
-import lesson8.advanced.Store;
-import lesson8.advanced.Watch;
-import lesson8.advanced.Worker;
+import lesson8.advanced.*;
 import lesson8.base.Airplane;
 import lesson8.base.Duck;
 import lesson8.base.Fly;
 import lesson8.base.FlyException;
 import lesson8.expert.Car;
+import lesson8.expert.CarPriceException;
 import lesson8.expert.CarShop;
 
 import java.util.List;
@@ -41,7 +39,7 @@ public class HomeWork4 {
         for (Fly fly : flies) {
             try {
                 fly.fly();
-            }catch (FlyException e){
+            } catch (FlyException e) {
                 System.out.println(e.getMessage());
             }
 
@@ -75,7 +73,11 @@ public class HomeWork4 {
         for (Store store : stores) {
             List<Worker> workers = store.getWorkers();
             for (Worker worker : workers) {
-                worker.getWatch().ticks();
+                try {
+                    worker.getWatch().ticks();
+                } catch (WatchBrokenError e) {
+                    System.out.println(e.getMessage());
+                }
             }
         }
         // Ожидание вывода на экран:
@@ -104,7 +106,11 @@ public class HomeWork4 {
         CarShop carShop1 = new CarShop(car1);
         List<CarShop> carShops = List.of(carShop, carShop1);
         for (CarShop cars : carShops) {
-            cars.sellCar();
+            try {
+                cars.sellCar();
+            } catch (CarPriceException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

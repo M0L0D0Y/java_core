@@ -17,15 +17,10 @@ public class Watch implements Tick {
 
     @Override
     public void ticks() {
-        try {
-            if (broken) {
-                throw new WatchBrokenError("Ошибка: Часы сломались.");
-            }
-        } catch (WatchBrokenError e) {
-            System.out.println(e.getMessage());
+        if (broken) {
+            throw new WatchBrokenError("Ошибка: Часы сломались.");
         }
-        if (!broken) {
-            System.out.println("Часы тикают");
-        }
+        System.out.println("Часы тикают");
+
     }
 }

@@ -16,15 +16,9 @@ public class Car {
     }
 
     public void price() {
-        try {
-            if (price < 0) {
-                throw new CarPriceException("Неизвестна мне");
-            }
-        } catch (CarPriceException e) {
-            System.out.println(e.getMessage());
+        if (price < 0) {
+            throw new CarPriceException("Неизвестна мне");
         }
-        if (price > 0) {
-            System.out.println(price);
-        }
+        System.out.println(price);
     }
 }
