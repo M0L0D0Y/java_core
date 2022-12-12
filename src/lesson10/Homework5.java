@@ -65,5 +65,6 @@ public class Homework5 {
         // Расходы pyterochka за весь период: 20032220.00
         // Расходы perekrestok за весь период: 1734220.00
         // .. и тд
+        HomeworkExpert.getReportOfFinalOutcome();
     }
 }
