@@ -4,6 +4,7 @@ import lesson10.advanced.HomeworkAdvanced;
 import lesson10.base.FinancialRecord;
 import lesson10.base.HomeworkBase;
 import lesson10.expert.HomeworkExpert;
+import lesson10.expert.ShopNameException;
 
 import java.io.IOException;
 
@@ -23,7 +24,7 @@ public class Homework5 {
         // 3. Создать объект этого класса прямо здесь (class Homework5, метод main), с доходами 500, расходами 300
         // 4. Записать в файл "report.txt" данные из объекта класса.
         // Ожидаемый результат: в файле report.txt - одна строка: доходы = 500, расходы = 300
-        FinancialRecord financialRecord = new FinancialRecord(500,300);
+        FinancialRecord financialRecord = new FinancialRecord(500, 300);
         HomeworkBase.writerInFile(financialRecord);
         //Продвинутый уровень
         //Задача №1
@@ -57,7 +58,12 @@ public class Homework5 {
         // 01.2012: 20000.00
         // 02.2012: -100332.00
         // и тд
-        HomeworkExpert.getReportOfFinalProfit();
+        String shopName = "pyterochka";
+        try {
+            HomeworkExpert.getReportOfFinalProfit(shopName);
+        } catch (ShopNameException e) {
+            System.out.println(e.getMessage());
+        }
         // Задача №2
         // Необходим составить отчет о расходах всех магазинов за весь период в разбивке по магазинам
         // (т.е. прочитать все файлы внутри папки)
