@@ -79,36 +79,27 @@ public class HomeworkExpert {
     private static void divideByShop(String[] fields, String[] reports) {
         ShopName nameShop = ShopName.valueOf(fields[MIN_VALUE].toUpperCase());
         switch (nameShop) {
-            case OKEY -> {
-                int index = 0;
-                addReportOutcome(index, fields, reports, ShopName.OKEY);
-            }
-            case YDOMA -> {
-                int index = 1;
-                addReportOutcome(index, fields, reports, ShopName.YDOMA);
-            }
-            case PEREKRESTOK -> {
-                int index = 2;
-                addReportOutcome(index, fields, reports, ShopName.PEREKRESTOK);
-            }
-            case PYTEROCHKA -> {
-                int index = 3;
-                addReportOutcome(index, fields, reports, ShopName.PYTEROCHKA);
-            }
+            case OKEY -> addReportOutcome(fields, reports, ShopName.OKEY);
+
+            case YDOMA -> addReportOutcome(fields, reports, ShopName.YDOMA);
+
+            case PEREKRESTOK -> addReportOutcome(fields, reports, ShopName.PEREKRESTOK);
+
+            case PYTEROCHKA -> addReportOutcome(fields, reports, ShopName.PYTEROCHKA);
         }
     }
 
-    private static void addReportOutcome(int index, String[] fields, String[] reports, ShopName shopName) {
+    private static void addReportOutcome(String[] fields, String[] reports, ShopName shopName) {
         double outcomeFile = Double.parseDouble(fields[OUTCOME]);
         double outcome = MIN_VALUE;
-        if (reports[index] != null) {
-            String[] data = reports[index].split(REGEX_FOR_REPORT_OUTCOME);
+        if (reports[shopName.getIndex()] != null) {
+            String[] data = reports[shopName.getIndex()].split(REGEX_FOR_REPORT_OUTCOME);
             outcome = Double.parseDouble(data[1].replace(COMMA, DOT));
         }
         outcome += outcomeFile;
         String report = "Расходы " + shopName.toString().toLowerCase() +
                 " за весь период : " + String.format(FORMAT, (outcome));
-        reports[index] = report;
+        reports[shopName.getIndex()] = report;
     }
 
 
