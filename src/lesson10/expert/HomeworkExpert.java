@@ -32,6 +32,7 @@ public class HomeworkExpert {
     public static void generateReports() throws IOException {
         DataGenerator.createReports(PATH);
     }
+
     public static void getReportOfFinalProfit(String shopName) throws IOException, ShopNameException {
         checkShopName(shopName);
         String[] reports = new String[MAX_VALUE];
@@ -60,10 +61,11 @@ public class HomeworkExpert {
 
     private static void checkShopName(String shopName) throws ShopNameException {
         List<String> shops = List.of(SHOP_YDOMA, SHOP_OKAY, SHOP_PEREKRESTOK, SHOP_PYTEROCHKA);
-        if (!shops.contains(shopName)){
-            throw new ShopNameException("Нет такого магазина "+ shopName);
+        if (!shops.contains(shopName)) {
+            throw new ShopNameException("Нет такого магазина " + shopName);
         }
     }
+
     public static void getReportOfFinalOutcome() throws IOException {
         String[] reports = new String[COUNT_SHOP];
         for (int i = 1; i < MAX_VALUE; i++) {
@@ -77,30 +79,34 @@ public class HomeworkExpert {
                         continue;
                     }
                     String[] fields = line.split(REGEX_LINE);
-                    switch (fields[MIN_VALUE]) {
-                        case SHOP_OKAY -> {
-                            int index = 0;
-                            addReportOutcome(index, fields, reports, SHOP_OKAY);
-                        }
-                        case SHOP_YDOMA -> {
-                            int index = 1;
-                            addReportOutcome(index, fields, reports, SHOP_YDOMA);
-                        }
-                        case SHOP_PEREKRESTOK -> {
-                            int index = 2;
-                            addReportOutcome(index, fields, reports, SHOP_PEREKRESTOK);
-                        }
-                        case SHOP_PYTEROCHKA -> {
-                            int index = 3;
-                            addReportOutcome(index, fields, reports, SHOP_PYTEROCHKA);
-                        }
-                    }
+                    divideByShop(fields, reports);
                 }
             }
         }
         System.out.println("\nЭкспертный уровень. Задача №2");
         for (String report : reports) {
             System.out.println(report);
+        }
+    }
+
+    private static void divideByShop(String[] fields, String[] reports) {
+        switch (fields[MIN_VALUE]) {
+            case SHOP_OKAY -> {
+                int index = 0;
+                addReportOutcome(index, fields, reports, SHOP_OKAY);
+            }
+            case SHOP_YDOMA -> {
+                int index = 1;
+                addReportOutcome(index, fields, reports, SHOP_YDOMA);
+            }
+            case SHOP_PEREKRESTOK -> {
+                int index = 2;
+                addReportOutcome(index, fields, reports, SHOP_PEREKRESTOK);
+            }
+            case SHOP_PYTEROCHKA -> {
+                int index = 3;
+                addReportOutcome(index, fields, reports, SHOP_PYTEROCHKA);
+            }
         }
     }
 
