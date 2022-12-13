@@ -57,9 +57,8 @@ public class Homework5 {
         // Прибыль по магазину pyterochka по месяцам
         // 01.2012: 20000.00
         // 02.2012: -100332.00
-        // и тд
-        String shopName = ShopName.OKEY.toString().toLowerCase();
-        HomeworkExpert.getReportOfFinalProfit(shopName);
+        // и тд;
+        HomeworkExpert.getReportOfFinalProfit(ShopName.OKEY);
         // Задача №2
         // Необходим составить отчет о расходах всех магазинов за весь период в разбивке по магазинам
         // (т.е. прочитать все файлы внутри папки)

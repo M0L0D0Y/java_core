@@ -3,7 +3,6 @@ package lesson10.expert;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 
 public class HomeworkExpert {
     private static final String PATH = "C:\\Users\\i7asc\\Desktop\\JavaCore\\java_core\\resource";
@@ -17,10 +16,6 @@ public class HomeworkExpert {
     private static final String FIRST_CHAR_DATE = "0";
     private static final char DOT = '.';
     private static final char COMMA = ',';
-    private static final String SHOP_OKAY = "okey";
-    private static final String SHOP_PYTEROCHKA = "pyterochka";
-    private static final String SHOP_YDOMA = "ydoma";
-    private static final String SHOP_PEREKRESTOK = "perekrestok";
     private static final int INCOME = 1;
     private static final int OUTCOME = 2;
     private static final int DATE = 3;
@@ -33,7 +28,7 @@ public class HomeworkExpert {
         DataGenerator.createReports(PATH);
     }
 
-    public static void getReportOfFinalProfit(String shopName) throws IOException {
+    public static void getReportOfFinalProfit(ShopName shopName) throws IOException {
         String[] reports = new String[MAX_VALUE];
         for (int i = 1; i < MAX_VALUE; i++) {
             String path = getPath(i);
@@ -46,7 +41,7 @@ public class HomeworkExpert {
                         continue;
                     }
                     String[] fields = line.split(REGEX_LINE);
-                    if (fields[MIN_VALUE].equals(shopName)) {
+                    if (fields[MIN_VALUE].equals(shopName.toString().toLowerCase())) {
                         addReportProfit(i, fields, reports, shopName);
                     }
                 }
@@ -82,27 +77,28 @@ public class HomeworkExpert {
     }
 
     private static void divideByShop(String[] fields, String[] reports) {
-        switch (fields[MIN_VALUE]) {
-            case SHOP_OKAY -> {
+        ShopName nameShop = ShopName.valueOf(fields[MIN_VALUE].toUpperCase());
+        switch (nameShop) {
+            case OKEY -> {
                 int index = 0;
-                addReportOutcome(index, fields, reports, SHOP_OKAY);
+                addReportOutcome(index, fields, reports, ShopName.OKEY);
             }
-            case SHOP_YDOMA -> {
+            case YDOMA -> {
                 int index = 1;
-                addReportOutcome(index, fields, reports, SHOP_YDOMA);
+                addReportOutcome(index, fields, reports, ShopName.YDOMA);
             }
-            case SHOP_PEREKRESTOK -> {
+            case PEREKRESTOK -> {
                 int index = 2;
-                addReportOutcome(index, fields, reports, SHOP_PEREKRESTOK);
+                addReportOutcome(index, fields, reports, ShopName.PEREKRESTOK);
             }
-            case SHOP_PYTEROCHKA -> {
+            case PYTEROCHKA -> {
                 int index = 3;
-                addReportOutcome(index, fields, reports, SHOP_PYTEROCHKA);
+                addReportOutcome(index, fields, reports, ShopName.PYTEROCHKA);
             }
         }
     }
 
-    private static void addReportOutcome(int index, String[] fields, String[] reports, String shop) {
+    private static void addReportOutcome(int index, String[] fields, String[] reports, ShopName shopName) {
         double outcomeFile = Double.parseDouble(fields[OUTCOME]);
         double outcome = MIN_VALUE;
         if (reports[index] != null) {
@@ -110,12 +106,13 @@ public class HomeworkExpert {
             outcome = Double.parseDouble(data[1].replace(COMMA, DOT));
         }
         outcome += outcomeFile;
-        String report = "Расходы " + shop + " за весь период : " + String.format(FORMAT, (outcome));
+        String report = "Расходы " + shopName.toString().toLowerCase() +
+                " за весь период : " + String.format(FORMAT, (outcome));
         reports[index] = report;
     }
 
 
-    private static void addReportProfit(int i, String[] fields, String[] reports, String shop) {
+    private static void addReportProfit(int i, String[] fields, String[] reports, ShopName shopName) {
         double income = Double.parseDouble(fields[INCOME]);
         double outcome = Double.parseDouble(fields[OUTCOME]);
         String[] date = fields[DATE].split(REGEX_DATE);
@@ -127,7 +124,7 @@ public class HomeworkExpert {
         }
         profit = profit + (income - outcome);
         String report = getDate(i, year) + REGEX_FOR_REPORT_PROFIT + String.format(FORMAT, (profit));
-        reports[MIN_VALUE] = shop;
+        reports[MIN_VALUE] = shopName.toString().toLowerCase();
         reports[i] = report;
     }
 
