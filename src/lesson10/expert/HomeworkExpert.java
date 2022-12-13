@@ -33,8 +33,7 @@ public class HomeworkExpert {
         DataGenerator.createReports(PATH);
     }
 
-    public static void getReportOfFinalProfit(String shopName) throws IOException, ShopNameException {
-        checkShopName(shopName);
+    public static void getReportOfFinalProfit(String shopName) throws IOException {
         String[] reports = new String[MAX_VALUE];
         for (int i = 1; i < MAX_VALUE; i++) {
             String path = getPath(i);
@@ -56,13 +55,6 @@ public class HomeworkExpert {
         System.out.println("Экспертный уровень. Задача №1");
         for (String report : reports) {
             System.out.println(report);
-        }
-    }
-
-    private static void checkShopName(String shopName) throws ShopNameException {
-        List<String> shops = List.of(SHOP_YDOMA, SHOP_OKAY, SHOP_PEREKRESTOK, SHOP_PYTEROCHKA);
-        if (!shops.contains(shopName)) {
-            throw new ShopNameException("Нет такого магазина " + shopName);
         }
     }
 

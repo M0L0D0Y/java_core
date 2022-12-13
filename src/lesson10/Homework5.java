@@ -4,7 +4,7 @@ import lesson10.advanced.HomeworkAdvanced;
 import lesson10.base.FinancialRecord;
 import lesson10.base.HomeworkBase;
 import lesson10.expert.HomeworkExpert;
-import lesson10.expert.ShopNameException;
+import lesson10.expert.ShopName;
 
 import java.io.IOException;
 
@@ -58,12 +58,8 @@ public class Homework5 {
         // 01.2012: 20000.00
         // 02.2012: -100332.00
         // и тд
-        String shopName = "pyterochka";
-        try {
-            HomeworkExpert.getReportOfFinalProfit(shopName);
-        } catch (ShopNameException e) {
-            System.out.println(e.getMessage());
-        }
+        String shopName = ShopName.OKEY.toString().toLowerCase();
+        HomeworkExpert.getReportOfFinalProfit(shopName);
         // Задача №2
         // Необходим составить отчет о расходах всех магазинов за весь период в разбивке по магазинам
         // (т.е. прочитать все файлы внутри папки)
