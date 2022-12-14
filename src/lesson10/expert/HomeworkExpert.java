@@ -14,6 +14,8 @@ public class HomeworkExpert {
     private static final String REGEX_FOR_REPORT_OUTCOME = " : ";
     private static final String FORMAT = "%.2f";
     private static final String FIRST_CHAR_DATE = "0";
+    private static final String PROFIT_BY_SHOP = "Прибыль по магазину ";
+    private static final String BY_MONTH = " по месяцам";
     private static final char DOT = '.';
     private static final char COMMA = ',';
     private static final int INCOME = 1;
@@ -115,7 +117,7 @@ public class HomeworkExpert {
         }
         profit = profit + (income - outcome);
         String report = getDate(i, year) + REGEX_FOR_REPORT_PROFIT + String.format(FORMAT, (profit));
-        reports[MIN_VALUE] = shopName.toString().toLowerCase();
+        reports[MIN_VALUE] = PROFIT_BY_SHOP + shopName.toString().toLowerCase() + BY_MONTH;
         reports[i] = report;
     }
 

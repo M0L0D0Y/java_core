@@ -54,9 +54,9 @@ public class HomeworkAdvanced {
         try (BufferedReader reader = new BufferedReader(new FileReader(PATH))) {
             while (reader.ready()) {
                 String line = reader.readLine();
-                String[] incomes = line.split(REGEX);
-                allIncomes += Integer.parseInt(incomes[0].substring(INCOMES.length()));
-                allOutcomes += Integer.parseInt(incomes[1].substring(OUTCOMES.length()));
+                String[] fields = line.split(REGEX);
+                allIncomes += Integer.parseInt(fields[0].substring(INCOMES.length()));
+                allOutcomes += Integer.parseInt(fields[1].substring(OUTCOMES.length()));
             }
         }
         System.out.println("Продвинутый уровень\n" + ALL_INCOMES + allIncomes + ALL_OUTCOMES + allOutcomes + "\n");
