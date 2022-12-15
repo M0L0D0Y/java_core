@@ -16,7 +16,7 @@ public class HomeworkAdvanced {
     private static final String ALL_INCOMES = "общие доходы - ";
     private static final String OUTCOMES = ", расходы = ";
     private static final String ALL_OUTCOMES = ", общие расходы - ";
-    private static final List<FinancialRecord> financialRecordList = new ArrayList<>();
+    private static final List<FinancialRecord> FINANCIAL_RECORD_LIST = new ArrayList<>();
 
     private static final int COUNT_REPORT = 10;
 
@@ -34,13 +34,13 @@ public class HomeworkAdvanced {
             Integer incomes = RANDOM.nextInt(MAX_VALUE);
             Integer outcomes = RANDOM.nextInt(MAX_VALUE);
             FinancialRecord financialRecord = new FinancialRecord(incomes, outcomes);
-            financialRecordList.add(financialRecord);
+            FINANCIAL_RECORD_LIST.add(financialRecord);
         }
     }
 
     private static void writerInFile() throws IOException {
         try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter(PATH))) {
-            for (FinancialRecord financialRecord : HomeworkAdvanced.financialRecordList) {
+            for (FinancialRecord financialRecord : HomeworkAdvanced.FINANCIAL_RECORD_LIST) {
                 String string = INCOMES +
                         financialRecord.getIncomes() +
                         OUTCOMES +
