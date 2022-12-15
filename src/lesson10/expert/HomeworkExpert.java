@@ -39,8 +39,13 @@ public class HomeworkExpert {
         for (int i = 1; i < MAX_VALUE; i++) {
             String path = getPath(i);
             try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+                int countLine = MIN_VALUE;
                 while (reader.ready()) {
                     String line = reader.readLine();
+                    if (countLine == MIN_VALUE) {
+                        countLine++;
+                        continue;
+                    }
                     String[] fields = line.split(REGEX_LINE);
                     if (fields[MIN_VALUE].equals(shopName.toString().toLowerCase())) {
                         addReportProfit(i, fields, reports);
