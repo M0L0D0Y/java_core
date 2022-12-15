@@ -58,7 +58,7 @@ public class Homework5 {
         // 01.2012: 20000.00
         // 02.2012: -100332.00
         // и тд;
-        HomeworkExpert.getReportOfFinalProfit(ShopName.OKEY);
+        HomeworkExpert.getReportOfFinalProfit(ShopName.PYTEROCHKA);
         // Задача №2
         // Необходим составить отчет о расходах всех магазинов за весь период в разбивке по магазинам
         // (т.е. прочитать все файлы внутри папки)

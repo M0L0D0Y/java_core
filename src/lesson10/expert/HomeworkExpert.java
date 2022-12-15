@@ -25,6 +25,9 @@ public class HomeworkExpert {
     private static final int MAX_VALUE = 13;
     private static final int COUNT_SHOP = 4;
 
+    private HomeworkExpert() {
+    }
+
 
     public static void generateReports() throws IOException {
         DataGenerator.createReports(PATH);

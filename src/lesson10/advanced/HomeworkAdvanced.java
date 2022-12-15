@@ -20,6 +20,9 @@ public class HomeworkAdvanced {
 
     private static final int COUNT_REPORT = 10;
 
+    private HomeworkAdvanced() {
+    }
+
     public static void writeOnDisplayAllIncomesAndAllOutcomes() throws IOException {
         generatorFinancialRecord();
         writerInFile();

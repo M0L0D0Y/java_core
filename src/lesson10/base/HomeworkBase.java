@@ -3,6 +3,8 @@ package lesson10.base;
 import java.io.*;
 
 public class HomeworkBase {
+    private HomeworkBase() {
+    }
 
     public static void readAndWriteOnDisplay() throws IOException {
         String path = "C:\\Users\\i7asc\\Desktop\\JavaCore\\java_core\\my_first_file.txt";
