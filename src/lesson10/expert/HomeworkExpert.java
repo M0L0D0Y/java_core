@@ -35,19 +35,15 @@ public class HomeworkExpert {
 
     public static void getReportOfFinalProfit(ShopName shopName) throws IOException {
         String[] reports = new String[MAX_VALUE];
+        reports[MIN_VALUE] = PROFIT_BY_SHOP + shopName.toString().toLowerCase() + BY_MONTH;
         for (int i = 1; i < MAX_VALUE; i++) {
             String path = getPath(i);
             try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-                int countLine = MIN_VALUE;
                 while (reader.ready()) {
                     String line = reader.readLine();
-                    if (countLine == MIN_VALUE) {
-                        countLine++;
-                        continue;
-                    }
                     String[] fields = line.split(REGEX_LINE);
                     if (fields[MIN_VALUE].equals(shopName.toString().toLowerCase())) {
-                        addReportProfit(i, fields, reports, shopName);
+                        addReportProfit(i, fields, reports);
                     }
                 }
             }
@@ -108,7 +104,7 @@ public class HomeworkExpert {
     }
 
 
-    private static void addReportProfit(int i, String[] fields, String[] reports, ShopName shopName) {
+    private static void addReportProfit(int i, String[] fields, String[] reports) {
         double income = Double.parseDouble(fields[INCOME]);
         double outcome = Double.parseDouble(fields[OUTCOME]);
         String[] date = fields[DATE].split(REGEX_DATE);
@@ -120,7 +116,6 @@ public class HomeworkExpert {
         }
         profit = profit + (income - outcome);
         String report = getDate(i, year) + REGEX_FOR_REPORT_PROFIT + String.format(FORMAT, (profit));
-        reports[MIN_VALUE] = PROFIT_BY_SHOP + shopName.toString().toLowerCase() + BY_MONTH;
         reports[i] = report;
     }
 

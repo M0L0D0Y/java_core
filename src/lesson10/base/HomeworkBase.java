@@ -28,6 +28,6 @@ public class HomeworkBase {
         try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter(path))) {
             fileWriter.write(String.valueOf(string));
         }
-        System.out.println("Базовый уровень. Задача №2\n");
+        System.out.println("Базовый уровень. Задача №2\nСмотри файл report.txt\n");
     }
 }
