@@ -28,7 +28,6 @@ public class HomeworkExpert {
     private HomeworkExpert() {
     }
 
-
     public static void generateReports() throws IOException {
         DataGenerator.createReports(PATH);
     }
